@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAMEMIX-MANIA</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #060606d8;
+    }
+    
+    header {
+      position: relative;
+      text-align: center;
+      padding: 15px;
+      color: rgb(247, 223, 8);
+      font-size: 2.5rem;
+      z-index: 1;
+      
+    }
+
+    /* Animated gradient */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .header-box {
+      margin-top: 8.5px;
+      margin-left: 25%;
+      position: center;
+      width: 50%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ff6f61, #6b8e23, #60cbff, #ff1493);
+      background-size: 800% 800%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    /* Styling for the text inside the rectangle */
+    .header-text {
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      /* Ensure text stays above gradient background */
+    }
+
+    /* Animation container */
+    .animation-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Animated shapes */
+    .shape {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    /* Create multiple animated shapes */
+    .shape:nth-child(1) {
+    background-color: rgb(221, 49, 49);
+      top: 70px;
+      left: 3%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+    .shape:nth-child(2) {
+      background-color: rgb(59, 203, 59);
+      top: 100px;
+      left: 15%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -8s;
+    }
+
+    .shape:nth-child(3) {
+      background-color: rgb(50, 50, 186);
+      top: 70px;
+      left: 28%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+    .shape:nth-child(4) {
+      background-color: rgb(50, 186, 116);
+      top: 100px;
+      left: 39%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -8s;
+    }
+    .shape:nth-child(5) {
+      background-color: rgb(208, 70, 32);
+      top: 70px;
+      left: 48%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+    .shape:nth-child(6) {
+      background-color: rgb(191, 32, 191);
+      top: 100px;
+      left: 59%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -8s;
+    }
+
+    .shape:nth-child(7) {
+      background-color: rgb(186, 186, 50);
+      top: 100px;
+      left: 80%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -8s;
+    }
+
+    .shape:nth-child(8) {
+      background-color: #b23578;
+      top: 70px;
+      left: 93%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+    .shape:nth-child(9) {
+      background-color: rgb(197, 62, 62);
+      top: 70px;
+      left: 69%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+    
+
+    /* Keyframes for floating effect */
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
+      height:800px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background-color: rgb(40, 151, 119);
+      border: 1px solid #ccc;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      border-radius: 20px;
+      transition: background 0.5s, transform 0.5s;
+      box-shadow: 1px 1px 20px #902c01f7,
+                  1px 1px 40px #f92e01;
+      z-index: 1;            
+    }
+
+    .box img {
+      margin-left: 30%;
+      width: 42%;
+      height: 60%;
+      border-radius: 8px;
+      transition: background 0.5s, transform 0.5s;
+      box-shadow: 1px 1px 20px #017b90f7,
+                  1px 1px 40px #01aff9f7;
+    }
+
+    .description {
+      flex: 0 0 20%;
+      padding: 17px 0;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .play-btn {
+      flex: 0 0 10%;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .play-btn button {
+      padding: 10px 20px;
+      background-color: #293447;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .des{
+        margin-top: 20px;
+    }
+
+    .play-btn button:hover {
+      background-color: #475975;
+    }
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1; /* Ensure canvas stays behind everything */
+    }
+    .rocket {
+      position: fixed;
+      bottom: -150px;
+      width: 100px;
+      height: auto;
+      z-index: 2;
+    }
+
+    @keyframes rocketFly {
+      0% {
+        bottom: -150px;
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-container">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <header class="header-box">
+    <div class="header-text">GAMEMIX-MAINIA</div>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <img src="./image/game1.png" alt="Game 1">
+      <div class="description">Memory Card</div>
+      <div class="play-btn">
+        <a href="./Memory%20Card%20Game/index.html">
+          <button>Play</button>
+        </a>
+      </div>
+    </div>
+    
+    <div class="box">
+      <img src="./image/game2.png" alt="Game 2">
+      <div class="description">Snake</div>
+      <div class="play-btn">
+        <a href="./Snake%20game/index.html">
+          <button>Play</button>
+        </a>
+      </div>
+    </div>
+    
+    <div class="box">
+      <img src="./image/game3.jpg" alt="Game 3">
+      <div class="description">Stone, Paper and Scissors</div>
+      <div class="play-btn">
+        <a href="./Stone%20paper%20and%20scissors/index.html">
+          <button>Play</button>
+        </a>
+      </div>
+    </div>
+    
+    <div class="box">
+      <img src="./image/game4.png" alt="Game 4">
+      <div class="description">Word Scramble</div>
+      <div class="play-btn">
+        <a href="./Word%20Scramble%20Game/index.html">
+          <button>Play</button>
+        </a>
+      </div>
+    </div>
+    
+  </div>
+  <canvas id="fireworksCanvas"></canvas>
+  <img src="./image/rocket.png" class="rocket" id="rocketLeft" style="left: 3%;" alt="Rocket">
+  <img src="./image/rocket.png" class="rocket" id="rocketRight" style="right: 3%;" alt="Rocket">
+  <script>
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Adjust canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    let fireworks = [];
+
+
+    class Firework {
+      constructor(x, y, radius, color, velocity) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.velocity = velocity;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.015 + 0.0075; 
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      update() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= this.decay;
+      }
+    }
+
+    // Create random fireworks
+    function createFireworks(x, y) {
+      const fireworkCount = 30;
+      const angleIncrement = (Math.PI * 2) / fireworkCount;
+      const colors = ['#ff6f61', '#ffdb00', '#60cbff', '#ff1493'];
+      
+      for (let i = 0; i < fireworkCount; i++) {
+        fireworks.push(new Firework(
+          x, y, 3, colors[Math.floor(Math.random() * colors.length)], {
+            x: Math.cos(angleIncrement * i) * (Math.random() * 4 + 2),
+            y: Math.sin(angleIncrement * i) * (Math.random() * 4 + 2)
+          }
+        ));
+      }
+    }
+
+    // Animate fireworks
+    function animateFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      fireworks.forEach((firework, index) => {
+        if (firework.alpha <= 0) {
+          fireworks.splice(index, 1);
+        } else {
+          firework.update();
+          firework.draw();
+        }
+      });
+
+      requestAnimationFrame(animateFireworks);
+    }
+
+    // Mouse click to trigger fireworks
+    window.addEventListener('click', (event) => {
+      createFireworks(event.clientX, event.clientY);
+    });
+
+    // Auto-generate fireworks
+    setInterval(() => {
+      createFireworks(Math.random() * canvas.width, Math.random() * canvas.height);
+    }, 1000);
+
+    animateFireworks();
+  </script>
+   <script>
+    const rocketLeft = document.getElementById('rocketLeft');
+    const rocketRight = document.getElementById('rocketRight');
+
+    function launchRocket(rocket) {
+      rocket.style.animation = 'rocketFly 5s ease-in-out forwards';
+      setTimeout(() => {
+        rocket.style.bottom = '-150px';
+        rocket.style.animation = 'none'; 
+        setTimeout(() => {
+          rocket.style.animation = 'rocketFly 5s ease-in-out forwards'; // Restart the animation after reset
+        }, 100); 
+      }, 10000); 
+    }
+
+    setInterval(() => {
+      launchRocket(rocketLeft);
+      launchRocket(rocketRight);
+    }, 10000);
+  </script>
+</body>
+</html>
