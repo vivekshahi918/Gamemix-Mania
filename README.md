@@ -1,5 +1,5 @@
 GameMix-Mania Consist of Games:-
-Memory Card Game
-Snake game
-Stone, paper and Scissor
-Word Scramble Game
+1:- Memory Card Game
+2:- Snake game
+3:- Stone, paper and Scissor
+4:- Word Scramble Game
